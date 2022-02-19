@@ -1,24 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+// Ben Samuel, Norman Bennett, Aaron Autin, David Pace, Frank Fontana
 public class Player : MonoBehaviour
 {
-
-
-    private bool isMoving;
-
-    private bool isAlive;
-
-    public bool isWinner;
-
     public Hand rightHand;
     public Hand leftHand;
     public GameObject hmd;
     private Vector3 hmdPosition;
+
     private bool leftForward;
     public float accel;
     private float dis;
+
+    private bool isMoving;
+    private bool isAlive;
+    public bool isWinner;
 
     // Start is called before the first frame update
     void Start()
@@ -57,13 +54,13 @@ public class Player : MonoBehaviour
         //Debug.Log("Right hand position: " + rightHand.handZ);
         //Debug.Log($"Cube position: {hmd.transform.position.x}, {hmd.transform.position.y}, {hmd.transform.position.z}");
 
-        // Check right hand position
+        // Check hand positions
         if (hmdPosition.z < rightHand.handZ && hmdPosition.z > leftHand.handZ && !leftForward)
         {
 
             Debug.Log("Right hand is behind head");
             leftForward = true;
-            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * dis, accel * Time.deltaTime);
+            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * dis * 2, accel * Time.deltaTime);
             isMoving = true;
 
         }
@@ -71,7 +68,7 @@ public class Player : MonoBehaviour
         {
             leftForward = false;
             Debug.Log("left hand is behind head");
-            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * dis, accel * Time.deltaTime);
+            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * dis * 2, accel * Time.deltaTime);
             isMoving = true;
         }
         else

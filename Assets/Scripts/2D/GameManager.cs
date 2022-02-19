@@ -12,8 +12,10 @@ public class GameManager : MonoBehaviour
 
     public Material redLight;
     public Material greenLight;
+    //public Material blueSky;
+    //public GameObject dead;
 
-    MeshRenderer lightRenderer;
+    //MeshRenderer lightRenderer;
 
 
 
@@ -28,9 +30,10 @@ public class GameManager : MonoBehaviour
         isGreenLight = false;
         currentLight = "red";
         currentTimeLeft = getTimeInRange();
+        //dead.SetActive(false);
         Debug.Log("Starting time in red light land: " + currentTimeLeft);
         thePlayers = (Player[]) Object.FindObjectsOfType(typeof(Player));
-        lightRenderer = GameObject.Find("Light").GetComponent<MeshRenderer>();
+        //lightRenderer = GameObject.Find("Light").GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
@@ -55,10 +58,10 @@ public class GameManager : MonoBehaviour
 
             //Change which light bulb image we're using.
             if(isGreenLight){
-                lightRenderer.material = greenLight;
+                RenderSettings.skybox = greenLight;
             }
             else{
-                lightRenderer.material = redLight;
+                RenderSettings.skybox = redLight;
             }
             
 
@@ -70,6 +73,7 @@ public class GameManager : MonoBehaviour
             foreach(Player player in thePlayers){
                 if(player.getIsMoving()){
                     //kill the player!
+                    //dead.SetActive(true);
                     Debug.Log("GOT YOU! PLAYER DIED!");
                     //player.killOff();
                     //player.transform.gameObject.SetActive(false);
