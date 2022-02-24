@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         currentLight = "red";
         currentTimeLeft = getTimeInRange();
         //dead.SetActive(false);
-        Debug.Log("Starting time in red light land: " + currentTimeLeft);
+        //Debug.Log("Starting time in red light land: " + currentTimeLeft);
         thePlayers = (Player[]) Object.FindObjectsOfType(typeof(Player));
         //lightRenderer = GameObject.Find("Light").GetComponent<MeshRenderer>();
     }
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
             switchLightName();
 
             //print out that it has changed states
-            Debug.Log(currentLight + " Light!");
+            //Debug.Log(currentLight + " Light!");
 
             //get a new random interval
             currentTimeLeft = getTimeInRange();
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
                 if(player.getIsMoving()){
                     //kill the player!
                     //dead.SetActive(true);
-                    Debug.Log("GOT YOU! PLAYER DIED!");
+                    //Debug.Log("GOT YOU! PLAYER DIED!");
                     //player.killOff();
                     //player.transform.gameObject.SetActive(false);
                     //player.gameObject.SetActive(false);

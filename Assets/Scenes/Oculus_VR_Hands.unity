@@ -1108,6 +1108,7 @@ GameObject:
   - component: {fileID: 209810945}
   - component: {fileID: 209810944}
   - component: {fileID: 209810943}
+  - component: {fileID: 209810947}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -1124,7 +1125,7 @@ MeshCollider:
   m_GameObject: {fileID: 209810942}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -1192,6 +1193,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!65 &209810947
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209810942}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 0.1, z: 10}
+  m_Center: {x: 0, y: -0.05, z: 0}
 --- !u!1 &220617180
 GameObject:
   m_ObjectHideFlags: 0
@@ -9383,6 +9397,8 @@ GameObject:
   - component: {fileID: 1885634965}
   - component: {fileID: 1885634967}
   - component: {fileID: 1885634969}
+  - component: {fileID: 1885634970}
+  - component: {fileID: 1885634968}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -9415,7 +9431,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885634964}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.666, z: 1.78}
+  m_LocalPosition: {x: 0, y: -0.13, z: 1.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2079278793}
@@ -9436,6 +9452,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ActionAssets:
   - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+--- !u!136 &1885634968
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885634964}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.23
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1885634969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9451,8 +9481,25 @@ MonoBehaviour:
   rightHand: {fileID: 1944162377}
   leftHand: {fileID: 2139987441}
   hmd: {fileID: 1885634964}
-  accel: 20
+  rb: {fileID: 1885634970}
+  accel: 25000
   isWinner: 0
+--- !u!54 &1885634970
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885634964}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &1906213211
 GameObject:
   m_ObjectHideFlags: 0
@@ -9559,7 +9606,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1933640339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.75, y: -1.44, z: 61.440002}
+  m_LocalPosition: {x: -0.75, y: -1.44, z: 97.8}
   m_LocalScale: {x: 100, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

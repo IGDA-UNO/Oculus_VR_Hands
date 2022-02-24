@@ -12,13 +12,15 @@ public class PlayerMovement : MonoBehaviour
     private Boolean leftForward;
     public float accel;
     private float dis;
+
+    public Rigidbody rb;
     
 
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -37,13 +39,15 @@ public class PlayerMovement : MonoBehaviour
 
             Debug.Log("Right hand is behind head");
             leftForward = true;
-            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * dis, accel * Time.deltaTime);
-            
+            rb.AddForce(transform.forward * accel);
+            //hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * dis, accel * Time.deltaTime);
+
         } else if(hmdPosition.z > rightHand.handZ && hmdPosition.z < leftHand.handZ && leftForward)
         {
             leftForward = false;
             Debug.Log("left hand is behind head");
-            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * dis, accel * Time.deltaTime);
+            rb.AddForce(transform.forward * accel);
+            //hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * dis, accel * Time.deltaTime);
         }
 
     }

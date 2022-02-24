@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public GameObject hmd;
     private Vector3 hmdPosition;
 
+    public Rigidbody rb;
+
     private bool leftForward;
     public float accel;
     private float dis;
@@ -23,6 +25,8 @@ public class Player : MonoBehaviour
         isMoving = false;
         isAlive = true;
         isWinner = false;
+
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -60,7 +64,10 @@ public class Player : MonoBehaviour
 
             Debug.Log("Right hand is behind head");
             leftForward = true;
-            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * dis * 2, accel * Time.deltaTime);
+            //hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * dis * 2, accel * Time.deltaTime);
+            Vector3 addedForce = transform.forward * accel * Time.deltaTime;
+            Debug.Log(addedForce);
+            rb.AddForce(addedForce);
             isMoving = true;
 
         }
@@ -68,7 +75,10 @@ public class Player : MonoBehaviour
         {
             leftForward = false;
             Debug.Log("left hand is behind head");
-            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * dis * 2, accel * Time.deltaTime);
+            //hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * dis * 2, accel * Time.deltaTime);
+            Vector3 addedForce = transform.forward * accel * Time.deltaTime;
+            Debug.Log(addedForce);
+            rb.AddForce(addedForce);
             isMoving = true;
         }
         else
