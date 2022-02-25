@@ -71,11 +71,12 @@ public class GameManager : MonoBehaviour
 
         if(!isGreenLight){
             foreach(Player player in thePlayers){
-                if(player.getIsMoving()){
+                if(player.rb.velocity.z >= 0.1f ){ // if(player.getIsMoving())
                     //kill the player!
                     //dead.SetActive(true);
-                    //Debug.Log("GOT YOU! PLAYER DIED!");
+                    Debug.Log("GOT YOU! PLAYER DIED!");
                     //player.killOff();
+                    player.rb.freezeRotation = false;
                     //player.transform.gameObject.SetActive(false);
                     //player.gameObject.SetActive(false);
                     //Destroy(player.transform.gameObject);

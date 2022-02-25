@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
             isWinner = true;
             Debug.Log(this.name + " WON!!!!!!!!!!!!!");
         }
-
+        Debug.Log(rb.velocity.z);
     }
 
     void Move()
