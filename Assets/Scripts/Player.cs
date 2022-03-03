@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     private bool isAlive;
     public bool isWinner;
 
+    public float movementSensitivity = 2f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (!isWinner && isAlive)
         {
             Move();
@@ -46,7 +49,7 @@ public class Player : MonoBehaviour
             isWinner = true;
             Debug.Log(this.name + " WON!!!!!!!!!!!!!");
         }
-        Debug.Log(rb.velocity.z);
+        //Debug.Log("Player velocity: " + rb.velocity.z);
     }
 
     void Move()
@@ -58,33 +61,55 @@ public class Player : MonoBehaviour
         //Debug.Log("Right hand position: " + rightHand.handZ);
         //Debug.Log($"Cube position: {hmd.transform.position.x}, {hmd.transform.position.y}, {hmd.transform.position.z}");
 
-        // Check hand positions
-        if (hmdPosition.z < rightHand.handZ && hmdPosition.z > leftHand.handZ && !leftForward)
-        {
 
-            Debug.Log("Right hand is behind head");
-            leftForward = true;
-            //hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * dis * 2, accel * Time.deltaTime);
-            Vector3 addedForce = transform.forward * accel * Time.deltaTime;
-            Debug.Log(addedForce);
-            rb.AddForce(addedForce);
-            isMoving = true;
-
-        }
-        else if (hmdPosition.z > rightHand.handZ && hmdPosition.z < leftHand.handZ && leftForward)
+        //Debug.Log($"Right hand velocity: {rightHand.vel} | Right hand accel: {rightHand.accel}");
+        //Debug.Log($"Left hand velocity: {leftHand.vel} | Left hand accel: {leftHand.accel}");
+        if (rightHand.accel >= movementSensitivity && leftHand.accel <= -movementSensitivity)
         {
-            leftForward = false;
-            Debug.Log("left hand is behind head");
-            //hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * dis * 2, accel * Time.deltaTime);
-            Vector3 addedForce = transform.forward * accel * Time.deltaTime;
-            Debug.Log(addedForce);
-            rb.AddForce(addedForce);
+            Debug.Log("Right Hand Forward Left Hand Backward");
+            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * rightHand.accel, accel * Time.deltaTime);
             isMoving = true;
         }
+        else if (rightHand.accel <= -movementSensitivity && leftHand.accel >= movementSensitivity)
+        {
+            Debug.Log("Right Hand Backward Left Hand Forward");
+            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * leftHand.accel, accel * Time.deltaTime);
+            isMoving = true;
+        }   
         else
         {
+            Debug.Log("Not Moving");
             isMoving = false;
         }
+           
+        /*
+        // Check hand positions
+        if (hmdPosition.z < rightHand.handZ && hmdPosition.z > leftHand.handZ && !leftForward)
+            {
+
+                //Debug.Log("Right hand is behind head");
+                leftForward = true;
+                //hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * dis * 2, accel * Time.deltaTime);
+                Vector3 addedForce = transform.forward * accel * Time.deltaTime;
+                //Debug.Log(addedForce);
+                rb.AddForce(addedForce);
+                isMoving = true;
+
+            }
+            else if (hmdPosition.z > rightHand.handZ && hmdPosition.z < leftHand.handZ && leftForward)
+            {
+                leftForward = false;
+                //Debug.Log("left hand is behind head");
+                //hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * dis * 2, accel * Time.deltaTime);
+                Vector3 addedForce = transform.forward * accel * Time.deltaTime;
+                //Debug.Log(addedForce);
+                rb.AddForce(addedForce);
+                isMoving = true;
+            }
+            else
+            {
+                isMoving = false;
+            */
     }
 
     public bool getIsMoving(){
