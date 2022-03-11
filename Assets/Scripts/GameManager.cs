@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
+// Ben Samuel, Norman Bennett
 public class GameManager : MonoBehaviour
 {
 
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     public Material redLight;
     public Material greenLight;
+
+    public TextMeshProUGUI countDownText;
     //public Material blueSky;
     //public GameObject dead;
 
@@ -34,6 +37,8 @@ public class GameManager : MonoBehaviour
         //Debug.Log("Starting time in red light land: " + currentTimeLeft);
         thePlayers = (Player[]) Object.FindObjectsOfType(typeof(Player));
         //lightRenderer = GameObject.Find("Light").GetComponent<MeshRenderer>();
+
+        countDownText.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
     }
 
     // Update is called once per frame
@@ -59,9 +64,11 @@ public class GameManager : MonoBehaviour
             //Change which light bulb image we're using.
             if(isGreenLight){
                 RenderSettings.skybox = greenLight;
+                countDownText.color = new Color (.0f, 1.0f, .0f, 1.0f);
             }
             else{
                 RenderSettings.skybox = redLight;
+                countDownText.color = new Color(1.0f, .0f, .0f, 1.0f);
             }
             
 

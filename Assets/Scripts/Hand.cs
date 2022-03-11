@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Aaron Autin, Frank Fontana
 public class Hand : MonoBehaviour
 {
     public float handZ;

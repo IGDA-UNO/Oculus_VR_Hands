@@ -67,13 +67,13 @@ public class Player : MonoBehaviour
         if (rightHand.accel >= movementSensitivity && leftHand.accel <= -movementSensitivity)
         {
             Debug.Log("Right Hand Forward Left Hand Backward");
-            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * rightHand.accel, accel * Time.deltaTime);
+            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * 1.5f * rightHand.accel, accel * Time.deltaTime);
             isMoving = true;
         }
         else if (rightHand.accel <= -movementSensitivity && leftHand.accel >= movementSensitivity)
         {
             Debug.Log("Right Hand Backward Left Hand Forward");
-            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * leftHand.accel, accel * Time.deltaTime);
+            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * 1.5f * leftHand.accel, accel * Time.deltaTime);
             isMoving = true;
         }   
         else
