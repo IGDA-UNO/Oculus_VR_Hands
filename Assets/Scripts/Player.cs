@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
         }
 
 
-        if (transform.localPosition.z >= GameObject.Find("Goal").transform.position.z && !isWinner){
+        if (transform.localPosition.z >= (GameObject.Find("Goal").transform.position.z - 10.0f) && !isWinner){
             isWinner = true;
             Debug.Log(this.name + " WON!!!!!!!!!!!!!");
         }
@@ -67,13 +67,15 @@ public class Player : MonoBehaviour
         if (rightHand.accel >= movementSensitivity && leftHand.accel <= -movementSensitivity)
         {
             Debug.Log("Right Hand Forward Left Hand Backward");
-            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * 1.5f * rightHand.accel, accel * Time.deltaTime);
+            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + transform.forward * 1.5f * rightHand.accel, accel * 2.0f * Time.deltaTime);
+            
             isMoving = true;
         }
         else if (rightHand.accel <= -movementSensitivity && leftHand.accel >= movementSensitivity)
         {
             Debug.Log("Right Hand Backward Left Hand Forward");
-            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * 1.5f * leftHand.accel, accel * Time.deltaTime);
+            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + transform.forward * 1.5f * leftHand.accel, accel * 2.0f * Time.deltaTime);
+            
             isMoving = true;
         }   
         else
