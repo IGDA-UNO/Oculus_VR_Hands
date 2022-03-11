@@ -10,15 +10,20 @@ public class CountDown : MonoBehaviour
     public TextMeshProUGUI countText;
     public string gameText;
 
-    public float minutes;
-    public float seconds;
+    [HideInInspector] public float minutes;
+    [HideInInspector] public float seconds;
     // Start is called before the first frame update
     void Start()
+    {
+        //StartCoroutine(Counter());
+    }
+
+    public void StartTimer()
     {
         StartCoroutine(Counter());
     }
 
-    IEnumerator Counter()
+    public IEnumerator Counter()
     {
         
 
@@ -27,7 +32,7 @@ public class CountDown : MonoBehaviour
             minutes = Mathf.FloorToInt(countDownTime / 60);
             seconds = Mathf.FloorToInt(countDownTime % 60);
 
-            countText.text = $"{minutes}:{seconds}";
+            countText.text = string.Format("{0:0}:{1:00}", minutes, seconds);
             countDownTime--;
             //Debug.Log(countDownTime);
             yield return new WaitForSecondsRealtime(1);

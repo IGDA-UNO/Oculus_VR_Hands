@@ -32,7 +32,13 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
+    {
+ 
+    }
+
+
+    public void UpdatePlayer()
     {
 
         if (!isWinner && isAlive)
@@ -67,14 +73,14 @@ public class Player : MonoBehaviour
         if (rightHand.accel >= movementSensitivity && leftHand.accel <= -movementSensitivity)
         {
             Debug.Log("Right Hand Forward Left Hand Backward");
-            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + transform.forward * 1.5f * rightHand.accel, accel * 2.0f * Time.deltaTime);
+            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * 1.5f * rightHand.accel, accel * 2.0f * Time.deltaTime);
             
             isMoving = true;
         }
         else if (rightHand.accel <= -movementSensitivity && leftHand.accel >= movementSensitivity)
         {
             Debug.Log("Right Hand Backward Left Hand Forward");
-            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + transform.forward * 1.5f * leftHand.accel, accel * 2.0f * Time.deltaTime);
+            hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * 1.5f * leftHand.accel, accel * 2.0f * Time.deltaTime);
             
             isMoving = true;
         }   

@@ -6,15 +6,23 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
 
-    bool isGreenLight; 
+    // enumerated values
+    public enum State { PREGAME, GAMEPLAY, POSTGAME };
+
+    // exposed variables
+    public bool isGreenLight;
     public float minLightTimer = 0.5f;
     public float maxLightTimer = 2.0f;
-    float currentTimeLeft;
-
+    public float currentTimeLeft;
     public Material redLight;
     public Material greenLight;
-
     public TextMeshProUGUI countDownText;
+
+    // hidden variables
+    [HideInInspector] public CountDown timer;
+    [HideInInspector] public State currentState;
+
+    
     //public Material blueSky;
     //public GameObject dead;
 
@@ -23,32 +31,48 @@ public class GameManager : MonoBehaviour
 
 
 
-    public Player[] thePlayers;
+    public Player player;
 
     string currentLight;
 
     // Start is called before the first frame update
     void Start()
     {
-        isGreenLight = false;
-        currentLight = "red";
-        currentTimeLeft = getTimeInRange();
-        //dead.SetActive(false);
-        //Debug.Log("Starting time in red light land: " + currentTimeLeft);
-        thePlayers = (Player[]) Object.FindObjectsOfType(typeof(Player));
-        //lightRenderer = GameObject.Find("Light").GetComponent<MeshRenderer>();
-
+        player = (Player) Object.FindObjectOfType(typeof(Player));
         countDownText.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        InitializeGame();
+        //Debug.Log("Starting time in red light land: " + currentTimeLeft);
     }
 
     // Update is called once per frame
     void Update()
     {
+        switch (currentState) 
+        {
+
+            case State.PREGAME:
+                break;
+            case State.POSTGAME:
+                break;
+            case State.GAMEPLAY:
+                player.UpdatePlayer();
+                UpdateGameState();
+                break;
+        }
+
+
+        
+        
+    }
+
+    void UpdateGameState()
+    {
         currentTimeLeft -= Time.deltaTime;
         //Debug.Log("remaining time: " + currentTimeLeft);
 
         //It is time to switch the light!
-        if(currentTimeLeft <= 0){
+        if (currentTimeLeft <= 0)
+        {
             //change text
             switchLightName();
 
@@ -62,37 +86,34 @@ public class GameManager : MonoBehaviour
             isGreenLight = !isGreenLight;
 
             //Change which light bulb image we're using.
-            if(isGreenLight){
+            if (isGreenLight)
+            {
                 RenderSettings.skybox = greenLight;
-                countDownText.color = new Color (.0f, 1.0f, .0f, 1.0f);
+                countDownText.color = new Color(.0f, 1.0f, .0f, 1.0f);
             }
-            else{
+            else
+            {
                 RenderSettings.skybox = redLight;
                 countDownText.color = new Color(1.0f, .0f, .0f, 1.0f);
             }
-            
-
 
         }
 
 
-        if(!isGreenLight){
-            foreach(Player player in thePlayers){
-
-                if(player.getIsMoving())
-                { // if(player.getIsMoving())
-                //kill the player!
-                //dead.SetActive(true);
-                    Debug.Log("GOT YOU! PLAYER DIED!");
-                    //player.killOff();
-                    //player.rb.freezeRotation = false;
-                    //player.transform.gameObject.SetActive(false);
-                    //player.gameObject.SetActive(false);
-                    //Destroy(player.transform.gameObject);
-                }
+        if (!isGreenLight)
+        {
+            if (player.getIsMoving())
+            {
+              //kill the player!
+              //dead.SetActive(true);
+                Debug.Log("GOT YOU! PLAYER DIED!");
+                //player.killOff();
+                //player.rb.freezeRotation = false;
+                //player.transform.gameObject.SetActive(false);
+                //player.gameObject.SetActive(false);
+                //Destroy(player.transform.gameObject);
             }
         }
-        
     }
 
     float getTimeInRange(){
@@ -109,6 +130,19 @@ public class GameManager : MonoBehaviour
             }
     }
 
+    void InitializeGame()
+    {
+        currentState = State.PREGAME;
+        isGreenLight = false;
+        currentLight = "red";
+        currentTimeLeft = getTimeInRange();
+    }
+
+    public void StartGamePlay()
+    {
+        timer.StartTimer();
+        currentState = State.GAMEPLAY;
+    }
 
 
 }
