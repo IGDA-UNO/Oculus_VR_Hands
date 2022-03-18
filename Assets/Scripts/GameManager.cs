@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI countDownText;
 
     // hidden variables
-    [HideInInspector] public CountDown timer;
+    //[HideInInspector] public CountDown timer;
     [HideInInspector] public State currentState;
 
     
@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGamePlay()
     {
-        timer.StartTimer();
+        //timer.StartTimer();
         currentState = State.GAMEPLAY;
     }
 

@@ -9,7 +9,7 @@ public class GameMenu : MonoBehaviour
     public Button yourButton;
     public Button QuitButton;
 
-    public GameManager game;
+    public GameManager gameManager;
 
     void Start()
     {
@@ -22,10 +22,10 @@ public class GameMenu : MonoBehaviour
 
      public void TaskOnClick()
     {
-        game.StartGamePlay();
+        gameManager.StartGamePlay();
     }
 
-    void QuitTaskOnClick()
+    public void QuitTaskOnClick()
     {
         //Application.Quit();
         Debug.Log("Quit Game Clicked");
