@@ -8,6 +8,8 @@ public class GameOverMenu : MonoBehaviour
 {
     public Button playAgainButton;
     public Button QuitButton;
+    public GameObject menuOffset;
+   
 
     void Start()
     {
@@ -17,12 +19,20 @@ public class GameOverMenu : MonoBehaviour
         quitbtn.onClick.AddListener(QuitTaskOnClick);
     }
 
-    void TaskOnClick()
+    private void Update()
     {
-        SceneManager.LoadScene("Main");
+      
+        transform.position = menuOffset.transform.position;
+       
     }
 
-    void QuitTaskOnClick()
+    public void TaskOnClick()
+    {
+        SceneManager.LoadScene("RLGL_Arena");
+        
+    }
+
+    public void QuitTaskOnClick()
     {
         Application.Quit();
     }
