@@ -31,13 +31,6 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    public void Update()
-    {
- 
-    }
-
-
     public void UpdatePlayer()
     {
 
@@ -72,21 +65,21 @@ public class Player : MonoBehaviour
         //Debug.Log($"Left hand velocity: {leftHand.vel} | Left hand accel: {leftHand.accel}");
         if (rightHand.accel >= movementSensitivity && leftHand.accel <= -movementSensitivity)
         {
-            Debug.Log("Right Hand Forward Left Hand Backward");
+            //Debug.Log("Right Hand Forward Left Hand Backward");
             hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * 1.5f * rightHand.accel, accel * 2.0f * Time.deltaTime);
             
             isMoving = true;
         }
         else if (rightHand.accel <= -movementSensitivity && leftHand.accel >= movementSensitivity)
         {
-            Debug.Log("Right Hand Backward Left Hand Forward");
+           // Debug.Log("Right Hand Backward Left Hand Forward");
             hmd.transform.position = Vector3.MoveTowards(hmd.transform.position, hmd.transform.position + Vector3.forward * 1.5f * leftHand.accel, accel * 2.0f * Time.deltaTime);
             
             isMoving = true;
         }   
         else
         {
-            Debug.Log("Not Moving");
+            //Debug.Log("Not Moving");
             isMoving = false;
         }
            

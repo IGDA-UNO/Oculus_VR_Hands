@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d111ed67f49d1114cac117d52d14c582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countDownTime: 180
+  countDownTime: 195
   countText: {fileID: 14084539}
   gameText: the end
   minutes: 0
@@ -5176,7 +5176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yourButton: {fileID: 2135165648}
-  QuitButton: {fileID: 0}
   gameManager: {fileID: 286813334}
 --- !u!114 &751474618
 MonoBehaviour:

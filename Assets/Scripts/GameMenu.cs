@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameMenu : MonoBehaviour
 {
     public Button yourButton;
-    public Button QuitButton;
+    //public Button QuitButton;
 
     public GameManager gameManager;
 
@@ -15,8 +15,8 @@ public class GameMenu : MonoBehaviour
     {
         Button btn = yourButton.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
-        Button quitbtn = QuitButton.GetComponent<Button>();
-        quitbtn.onClick.AddListener(QuitTaskOnClick);
+        /*Button quitbtn = QuitButton.GetComponent<Button>();
+        quitbtn.onClick.AddListener(QuitTaskOnClick);*/
     }
 
 
@@ -25,9 +25,9 @@ public class GameMenu : MonoBehaviour
         gameManager.StartGamePlay();
     }
 
-    public void QuitTaskOnClick()
+    /*public void QuitTaskOnClick()
     {
         Application.Quit();
         Debug.Log("Quit Game Clicked");
-    }
+    }*/
 }

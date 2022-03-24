@@ -54,10 +54,7 @@ public class GameManager : MonoBehaviour
                 UpdateGameState();
                 break;
         }
-
-
-        
-        
+   
     }
 
     void UpdateGameState()
@@ -99,15 +96,9 @@ public class GameManager : MonoBehaviour
         {
             if (player.getIsMoving())
             {
-                //kill the player!
-                //dead.SetActive(true);
-                player.killOff();
-                Debug.Log("GOT YOU! PLAYER DIED!");
+                player.killOff(); 
                 Death();
-                //player.rb.freezeRotation = false;
-                //player.transform.gameObject.SetActive(false);
-                //player.gameObject.SetActive(false);
-                //Destroy(player.transform.gameObject);
+                //Debug.Log("GOT YOU! PLAYER DIED!");
             }
         }
 
@@ -121,9 +112,9 @@ public class GameManager : MonoBehaviour
         return Random.Range(minLightTimer, maxLightTimer);
     }
 
+    //switching from green to red
     void switchLightName(){
-            if(isGreenLight){
-                //switching from green to red
+            if(isGreenLight){       
                 currentLight = "red";
             }
             else{
@@ -136,7 +127,7 @@ public class GameManager : MonoBehaviour
         currentState = State.PREGAME;
         isGreenLight = false;
         currentLight = "red";
-        currentTimeLeft = getTimeInRange();
+        currentTimeLeft = 15;// getTimeInRange();
     }
 
     public void StartGamePlay()

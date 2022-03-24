@@ -13,20 +13,15 @@ public class CountDown : MonoBehaviour
     [HideInInspector] public float minutes;
     [HideInInspector] public float seconds;
     // Start is called before the first frame update
-    void Start()
-    {
-        //StartCoroutine(Counter());
-    }
 
     public void StartTimer()
     {
-        StartCoroutine(Counter());
+        StartCoroutine(Counter());  
     }
 
     public IEnumerator Counter()
     {
         
-
         while (countDownTime > 0)
         {
             minutes = Mathf.FloorToInt(countDownTime / 60);
