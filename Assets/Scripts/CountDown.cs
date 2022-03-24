@@ -6,10 +6,10 @@ using TMPro;
 // by Jondrielle Wilson and Aaron Autin
 public class CountDown : MonoBehaviour
 {
-    public int countDownTime;
+    public float countDownTime;
     public TextMeshProUGUI countText;
     public string gameText;
-
+    
     [HideInInspector] public float minutes;
     [HideInInspector] public float seconds;
     // Start is called before the first frame update
@@ -33,7 +33,7 @@ public class CountDown : MonoBehaviour
             seconds = Mathf.FloorToInt(countDownTime % 60);
 
             countText.text = string.Format("{0:0}:{1:00}", minutes, seconds);
-            countDownTime--;
+            countDownTime -= .5f;
             //Debug.Log(countDownTime);
             yield return new WaitForSecondsRealtime(1);
         }

@@ -17,19 +17,13 @@ public class GameManager : MonoBehaviour
     public Material redLight;
     public Material greenLight;
     public TextMeshProUGUI countDownText;
+    public GameObject menu;
+    public GameObject winMenu;
+    public GameObject deathMenu;
 
     // hidden variables
-    //[HideInInspector] public CountDown timer;
+    [HideInInspector] public CountDown countDown;
     [HideInInspector] public State currentState;
-
-    
-    //public Material blueSky;
-    //public GameObject dead;
-
-    //MeshRenderer lightRenderer;
-
-
-
 
     public Player player;
 
@@ -53,6 +47,7 @@ public class GameManager : MonoBehaviour
             case State.PREGAME:
                 break;
             case State.POSTGAME:
+                player.UpdatePlayer();
                 break;
             case State.GAMEPLAY:
                 player.UpdatePlayer();
@@ -104,15 +99,21 @@ public class GameManager : MonoBehaviour
         {
             if (player.getIsMoving())
             {
-              //kill the player!
-              //dead.SetActive(true);
+                //kill the player!
+                //dead.SetActive(true);
+                player.killOff();
                 Debug.Log("GOT YOU! PLAYER DIED!");
-                //player.killOff();
+                Death();
                 //player.rb.freezeRotation = false;
                 //player.transform.gameObject.SetActive(false);
                 //player.gameObject.SetActive(false);
                 //Destroy(player.transform.gameObject);
             }
+        }
+
+        if (player.isWinner)
+        {
+            WinGame();
         }
     }
 
@@ -140,8 +141,22 @@ public class GameManager : MonoBehaviour
 
     public void StartGamePlay()
     {
-        //timer.StartTimer();
+        
         currentState = State.GAMEPLAY;
+        countDown.StartTimer();
+        menu.SetActive(false);
+    }
+
+    public void WinGame()
+    {
+        currentState = State.POSTGAME;
+        winMenu.SetActive(true);
+    }
+
+    public void Death()
+    {
+        currentState = State.POSTGAME;
+        deathMenu.SetActive(true);
     }
 
 

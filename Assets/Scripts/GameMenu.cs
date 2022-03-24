@@ -27,7 +27,7 @@ public class GameMenu : MonoBehaviour
 
     public void QuitTaskOnClick()
     {
-        //Application.Quit();
+        Application.Quit();
         Debug.Log("Quit Game Clicked");
     }
 }
