@@ -28,8 +28,6 @@ public class GameManager : MonoBehaviour
     public Player player;
     public HazelAnim hologram;
 
-    string currentLight;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -66,12 +64,7 @@ public class GameManager : MonoBehaviour
         //It is time to switch the light!
         if (currentTimeLeft <= 0)
         {
-            //change text
-            switchLightName();
-
-            //print out that it has changed states
-            //Debug.Log(currentLight + " Light!");
-
+         
             //get a new random interval
             currentTimeLeft = getTimeInRange();
 
@@ -123,22 +116,14 @@ public class GameManager : MonoBehaviour
         return Random.Range(minLightTimer, maxLightTimer);
     }
 
-    void switchLightName(){
-            if(isGreenLight){
-                //switching from green to red
-                currentLight = "red";
-            }
-            else{
-                currentLight = "green";
-            }
-    }
 
     void InitializeGame()
     {
         currentState = State.PREGAME;
         isGreenLight = false;
-        currentLight = "red";
+
         currentTimeLeft = getTimeInRange();
+        hologram.Idle();
     }
 
     public void StartGamePlay()

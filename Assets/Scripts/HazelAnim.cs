@@ -52,15 +52,13 @@ public class HazelAnim: MonoBehaviour
         animator.SetBool("Idle", false);
         animator.SetBool("Greenlight", false);
         animator.SetBool("Redlight", true);
-        animator.SetBool("Shoot", false);
+        
     }
 
     public void Shoot()
     {
         animator.SetBool("Idle", false);
         animator.SetBool("Greenlight", false);
-
-        animator.SetBool("Redlight", true);
 
         animator.SetBool("Shoot", true);
         animator.SetFloat("ShootNum", shootRand);
