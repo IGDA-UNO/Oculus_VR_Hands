@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public State currentState;
 
     public Player player;
+    public HazelAnim hologram;
 
     string currentLight;
 
@@ -55,9 +56,6 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-
-        
-        
     }
 
     void UpdateGameState()
@@ -85,11 +83,13 @@ public class GameManager : MonoBehaviour
             {
                 RenderSettings.skybox = greenLight;
                 countDownText.color = new Color(.0f, 1.0f, .0f, 1.0f);
+                hologram.Greenlight();
             }
             else
             {
                 RenderSettings.skybox = redLight;
                 countDownText.color = new Color(1.0f, .0f, .0f, 1.0f);
+                hologram.Redlight();
             }
 
         }
@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour
             {
                 //kill the player!
                 //dead.SetActive(true);
+                
                 player.killOff();
                 Debug.Log("GOT YOU! PLAYER DIED!");
                 Death();
@@ -114,6 +115,7 @@ public class GameManager : MonoBehaviour
         if (player.isWinner)
         {
             WinGame();
+            
         }
     }
 
@@ -145,18 +147,21 @@ public class GameManager : MonoBehaviour
         currentState = State.GAMEPLAY;
         countDown.StartTimer();
         menu.SetActive(false);
+        hologram.Idle();
     }
 
     public void WinGame()
     {
         currentState = State.POSTGAME;
         winMenu.SetActive(true);
+        hologram.Boogies();
     }
 
     public void Death()
     {
         currentState = State.POSTGAME;
         deathMenu.SetActive(true);
+        hologram.Shoot();
     }
 
 
