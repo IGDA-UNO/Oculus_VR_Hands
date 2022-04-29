@@ -19,7 +19,7 @@ public class VrHand : MonoBehaviour
 
     private string animGripParam = "Grip";
     private string animTriggerParam = "Trigger";
-    private string animSkratchParam = "Skratch";
+    //private string animSkratchParam = "Skratch";
 
 
     // Start is called before the first frame update
@@ -62,6 +62,7 @@ public class VrHand : MonoBehaviour
             animator.SetFloat(animTriggerParam, triggerCurrent);
         }
 
+        /*
         if (handController.skratchPressed)
         {
             animator.SetBool(animSkratchParam, true);
@@ -70,6 +71,7 @@ public class VrHand : MonoBehaviour
         {
             animator.SetBool(animSkratchParam, false);
         }
+        */
          
     }
 }
