@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     {
         player = (Player) Object.FindObjectOfType(typeof(Player));
         countDownText.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        
         InitializeGame();
         //Debug.Log("Starting time in red light land: " + currentTimeLeft);
     }
