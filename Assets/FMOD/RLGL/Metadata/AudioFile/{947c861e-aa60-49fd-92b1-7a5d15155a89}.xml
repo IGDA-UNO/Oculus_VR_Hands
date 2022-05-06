@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{947c861e-aa60-49fd-92b1-7a5d15155a89}">
+		<property name="assetPath">
+			<value>Red Light Green Light Remake (1).mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>99.004081632653055</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5528fadc-328f-47a8-9f7f-51e983da4752}</destination>
+		</relationship>
+	</object>
+</objects>

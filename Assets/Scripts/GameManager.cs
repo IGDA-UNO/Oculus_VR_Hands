@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public Material redLight;
     public Material greenLight;
     public TextMeshProUGUI countDownText;
-
+   
     // hidden variables
     //[HideInInspector] public CountDown timer;
     [HideInInspector] public State currentState;
@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     {
         player = (Player) Object.FindObjectOfType(typeof(Player));
         countDownText.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        
         InitializeGame();
         //Debug.Log("Starting time in red light land: " + currentTimeLeft);
     }
@@ -90,11 +91,19 @@ public class GameManager : MonoBehaviour
             {
                 RenderSettings.skybox = greenLight;
                 countDownText.color = new Color(.0f, 1.0f, .0f, 1.0f);
+                //sfx = "event:/Go";
+                //FMODUnity.RuntimeManager.PlayOneShot(music);
+                //musicEvent.start();
+                ///musicEvent.release();
             }
             else
             {
                 RenderSettings.skybox = redLight;
                 countDownText.color = new Color(1.0f, .0f, .0f, 1.0f);
+                //sfx = "event:/Stop";
+                //FMODUnity.RuntimeManager.PlayOneShot(music);
+                //musicEvent.start();
+                //musicEvent.release();
             }
 
         }
