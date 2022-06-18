@@ -9,6 +9,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class NetworkXRPlayer : MonoBehaviour
 {
     public Transform head;
+    public Transform body;
     public Transform leftHand;
     public Transform rightHand;
 
@@ -19,6 +20,7 @@ public class NetworkXRPlayer : MonoBehaviour
 
     [Header("XR Rig is deprecated. XR Origin is being used.")]
     private Transform headRig;
+    private Transform bodyRig;
     private Transform leftHandRig;
     private Transform rightHandRig;
     //private Transform bodyRig;
@@ -30,6 +32,7 @@ public class NetworkXRPlayer : MonoBehaviour
         XROrigin rig = FindObjectOfType<XROrigin>();
         //bodyRig = rig.transform;
         headRig = rig.transform.Find("Camera Offset/Main Camera");
+        bodyRig = rig.transform.Find("Camera Offset/Body Controller");
         leftHandRig = rig.transform.Find("Camera Offset/LeftHand Controller");
         rightHandRig = rig.transform.Find("Camera Offset/RightHand Controller");
 
@@ -37,7 +40,7 @@ public class NetworkXRPlayer : MonoBehaviour
         {
             foreach (var item in GetComponentsInChildren<Renderer>())
             {
-                item.enabled = false;
+                item.enabled = true;
             }
         }
     }
@@ -53,6 +56,7 @@ public class NetworkXRPlayer : MonoBehaviour
             MapPosition(rightHand, rightHandRig, bodyRig);
             */
             MapPosition(head, headRig);
+            MapPosition(body, bodyRig);
             MapPosition(leftHand, leftHandRig);
             MapPosition(rightHand, rightHandRig);
 
