@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject deathMenu;
 
+
     // hidden variables
     [HideInInspector] public CountDown countDown;
     [HideInInspector] public State currentState;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         player = (Player) Object.FindObjectOfType(typeof(Player));
         countDownText.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         InitializeGame();

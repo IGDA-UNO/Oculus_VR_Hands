@@ -5,6 +5,7 @@ using UnityEngine.XR;
 using Unity.XR.CoreUtils;
 using Photon.Pun;
 using UnityEngine.XR.Interaction.Toolkit;
+using Photon.Realtime;
 
 public class NetworkXRPlayer : MonoBehaviour
 {
@@ -16,8 +17,6 @@ public class NetworkXRPlayer : MonoBehaviour
     public Animator leftHandAnimator;
     public Animator rightHandAnimator;
 
-    private PhotonView photonView;
-
     [Header("XR Rig is deprecated. XR Origin is being used.")]
     private Transform headRig;
     private Transform bodyRig;
@@ -25,9 +24,22 @@ public class NetworkXRPlayer : MonoBehaviour
     private Transform rightHandRig;
     //private Transform bodyRig;
 
+    private PhotonView photonView;
+    private GameObject myNetworkXRPlayer;
+    Photon.Realtime.Player[] allPlayers;
+    int myNumberInRoom;
+
     // Start is called before the first frame update
     void Start()
     {
+        allPlayers = PhotonNetwork.PlayerList;
+        foreach(NetworkXRPlayer p in allPlayers)
+        {
+            if(p != PhotonNetwork.localPlayer)
+            {
+                myNumberInRoom++;
+            }
+        }
         photonView = GetComponent<PhotonView>();
         XROrigin rig = FindObjectOfType<XROrigin>();
         //bodyRig = rig.transform;
@@ -38,6 +50,8 @@ public class NetworkXRPlayer : MonoBehaviour
 
         if (photonView.IsMine)
         {
+            ///WE ARE STUCK RIGHT HERE youtube.com//watch?v=VtT6ZEcCVus&t=42s      search__Among Us Multiplayer Photon
+            myNetworkXRPlayer = PhotonNetwork.Instantiate("Resources", NetworkManager.instance.spawnPoints[myNumberInRoom].position, Quaternion.identity);
             foreach (var item in GetComponentsInChildren<Renderer>())
             {
                 item.enabled = true;

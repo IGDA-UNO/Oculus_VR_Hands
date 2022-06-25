@@ -10,6 +10,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     /// <summary>
     /// Connect to a server
     /// </summary>
+    public static NetworkManager instance;
+    public Transform[] spawnPoints;
 
     public void ConnectToServer()
     {
@@ -18,7 +20,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     void Start()
     {
+        instance = this;
         ConnectToServer();
+    }
+
+    void Update()
+    {
+
     }
 
     public override void OnConnectedToMaster()
