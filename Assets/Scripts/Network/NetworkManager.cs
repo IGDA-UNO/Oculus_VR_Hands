@@ -12,6 +12,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     /// </summary>
     public static NetworkManager instance;
     public Transform[] spawnPoints;
+    public Transform[] taken = new Transform[10];
 
     public void ConnectToServer()
     {
@@ -54,5 +55,22 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("A new player joined the room.");
         base.OnPlayerEnteredRoom(newPlayer);
+    }
+
+    public Transform RandomizeSpawnPoint()
+    {
+        int i = 0;
+        int randIndex = Random.Range(0, spawnPoints.Length);
+
+        while (taken[i] != null) 
+        {
+            if (i < spawnPoints.Length - 1)
+            { 
+                taken[i] = spawnPoints[randIndex];
+                i++;
+            }
+        }
+
+        return spawnPoints[randIndex];
     }
 }

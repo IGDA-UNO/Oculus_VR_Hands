@@ -33,9 +33,10 @@ public class NetworkXRPlayer : MonoBehaviour
     void Start()
     {
         allPlayers = PhotonNetwork.PlayerList;
-        foreach(NetworkXRPlayer p in allPlayers)
+
+        foreach(Photon.Realtime.Player p in allPlayers)
         {
-            if(p != PhotonNetwork.localPlayer)
+            if(p != PhotonNetwork.LocalPlayer)
             {
                 myNumberInRoom++;
             }
@@ -91,6 +92,7 @@ public class NetworkXRPlayer : MonoBehaviour
     {
         target.position = rigTransform.position;
         target.rotation = rigTransform.rotation;
+        target.localScale = rigTransform.localScale;
     }
 
     void UpdateHandAnimation(InputDevice targetDevice, Animator handAnimator)

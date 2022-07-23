@@ -7,13 +7,22 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 {
     private GameObject spawnedPlayerPrefab;
     public string networkPlayer;
-    public string networkPlayer2;
-    public string networkPlayer3;
+    public NetworkManager networkManager;
+    private Transform mySpawnPoint;
+    public bool taken;
+
 
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-        spawnedPlayerPrefab = PhotonNetwork.Instantiate(networkPlayer, transform.position, transform.rotation);
+
+        if (!taken) { 
+        mySpawnPoint = networkManager.RandomizeSpawnPoint();
+        spawnedPlayerPrefab = PhotonNetwork.Instantiate(networkPlayer, mySpawnPoint.position, transform.rotation);
+        }
+
+        taken = true;
+
    
     }
 
