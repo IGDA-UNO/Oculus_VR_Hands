@@ -8,7 +8,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
     private GameObject spawnedPlayerPrefab;
     public string networkPlayer;
     public NetworkManager networkManager;
-    private Transform mySpawnPoint;
+    public Transform mySpawnPoint;
     public bool taken;
 
 

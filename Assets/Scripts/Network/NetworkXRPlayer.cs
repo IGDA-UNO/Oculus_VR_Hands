@@ -29,6 +29,13 @@ public class NetworkXRPlayer : MonoBehaviour
     Photon.Realtime.Player[] allPlayers;
     int myNumberInRoom;
 
+    public NetworkPlayerSpawner playerSpawner;
+
+    private void Awake()
+    {
+        playerSpawner = GameObject.Find("PlayerSpawn").GetComponent<NetworkPlayerSpawner>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,7 +59,7 @@ public class NetworkXRPlayer : MonoBehaviour
         if (photonView.IsMine)
         {
             ///WE ARE STUCK RIGHT HERE youtube.com//watch?v=VtT6ZEcCVus&t=42s      search__Among Us Multiplayer Photon
-            myNetworkXRPlayer = PhotonNetwork.Instantiate("Resources", NetworkManager.instance.spawnPoints[myNumberInRoom].position, Quaternion.identity);
+            myNetworkXRPlayer = PhotonNetwork.Instantiate("Resources", playerSpawner.mySpawnPoint.position, Quaternion.identity);
             foreach (var item in GetComponentsInChildren<Renderer>())
             {
                 item.enabled = true;
