@@ -23,14 +23,17 @@ public class HazelAnim: MonoBehaviour
     void Update()
     {
         idleRand = Random.Range(1, 5);
+        animator.SetInteger("IdleNum", idleRand);
+
         shootRand = Random.Range(1, 3);
+        animator.SetFloat("ShootNum", shootRand);
 
     }
 
     public void Idle()
     {
         animator.SetBool("Idle", true);
-        animator.SetInteger("IdleNum", idleRand);
+        
 
         animator.SetBool("Greenlight", false);
         animator.SetBool("Redlight", false);
@@ -61,11 +64,15 @@ public class HazelAnim: MonoBehaviour
         animator.SetBool("Greenlight", false);
 
         animator.SetBool("Shoot", true);
-        animator.SetFloat("ShootNum", shootRand);
+        
     }
 
     public void Boogies()
     {
         animator.SetBool("Boogies", true);
+        animator.SetBool("Idle", false);
+        animator.SetBool("Greenlight", false);
+        animator.SetBool("Redlight", false);
+        animator.SetBool("Shoot", false);
     }
 }

@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
         }
 
 
-        if (!isGreenLight)
+        if (!isGreenLight && currentState == State.GAMEPLAY)
         {
             if (player.getIsMoving())
             {
